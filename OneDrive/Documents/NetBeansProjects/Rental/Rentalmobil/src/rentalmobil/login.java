@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import sun.misc.Cleaner;
+//import sun.misc.Cleaner;
 
 /**
  *
