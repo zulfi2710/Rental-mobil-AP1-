@@ -320,7 +320,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\search(1).png"/>
+              <Image iconType="2" name="C:\Users\zulfi\OneDrive\Documents\NetBeansProjects\Rental\Rentalmobil\src\gambar\search(1).png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
@@ -397,7 +397,7 @@
               <Font name="Quicksand" size="12" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\left-arrow-square-outlined-button.png"/>
+              <Image iconType="2" name="C:\Users\zulfi\OneDrive\Documents\NetBeansProjects\Rental\Rentalmobil\src\gambar\left-arrow-square-outlined-button.png"/>
             </Property>
           </Properties>
           <Events>
@@ -525,7 +525,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\jaz.jpg"/>
+              <Image iconType="2" name="C:\Users\zulfi\OneDrive\Documents\NetBeansProjects\Rental\Rentalmobil\src\gambar\jaz.jpg"/>
             </Property>
           </Properties>
           <Constraints>

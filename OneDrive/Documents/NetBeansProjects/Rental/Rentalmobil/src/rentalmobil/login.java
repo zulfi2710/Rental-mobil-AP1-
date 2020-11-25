@@ -156,7 +156,7 @@ public class login extends javax.swing.JFrame {
         jPanel1.add(btn_exit);
         btn_exit.setBounds(10, 10, 70, 31);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("F:\\jaz.jpg")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\zulfi\\OneDrive\\Documents\\NetBeansProjects\\Rental\\Rentalmobil\\src\\gambar\\jaz.jpg")); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(0, 0, 1366, 730);
 
