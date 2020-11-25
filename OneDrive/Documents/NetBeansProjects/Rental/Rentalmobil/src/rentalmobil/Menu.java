@@ -70,7 +70,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_sewaMobil.setBackground(new java.awt.Color(255, 255, 255));
         btn_sewaMobil.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
-        btn_sewaMobil.setIcon(new javax.swing.ImageIcon("C:\\Users\\zulfi\\OneDrive\\Documents\\NetBeansProjects\\Rental\\Rentalmobil\\src\\gambar\\sewa.png")); // NOI18N
+        btn_sewaMobil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/sewa.png"))); // NOI18N
         btn_sewaMobil.setText(" Sewa Mobil              ");
         btn_sewaMobil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_sewaMobil.setPreferredSize(new java.awt.Dimension(389, 111));
