@@ -512,7 +512,7 @@ public class SewaMobil extends javax.swing.JFrame {
         jPanel1.add(jScrollPane3);
         jScrollPane3.setBounds(650, 70, 700, 402);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\zulfi\\OneDrive\\Documents\\NetBeansProjects\\Rental\\Rentalmobil\\src\\gambar\\jaz.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/jaz.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1370, 730);
 

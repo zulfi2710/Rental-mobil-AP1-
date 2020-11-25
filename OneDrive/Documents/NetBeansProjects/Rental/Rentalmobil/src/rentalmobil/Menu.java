@@ -82,7 +82,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_pengembalianMobil.setBackground(new java.awt.Color(255, 255, 255));
         btn_pengembalianMobil.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
-        btn_pengembalianMobil.setIcon(new javax.swing.ImageIcon("C:\\Users\\zulfi\\OneDrive\\Documents\\NetBeansProjects\\Rental\\Rentalmobil\\src\\gambar\\kembali.png")); // NOI18N
+        btn_pengembalianMobil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/kembali.png"))); // NOI18N
         btn_pengembalianMobil.setText("Pengembalian Mobil");
         btn_pengembalianMobil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_pengembalianMobil.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_tambahMobil.setBackground(new java.awt.Color(255, 255, 255));
         btn_tambahMobil.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
-        btn_tambahMobil.setIcon(new javax.swing.ImageIcon("C:\\Users\\zulfi\\OneDrive\\Documents\\NetBeansProjects\\Rental\\Rentalmobil\\src\\gambar\\tambah.png")); // NOI18N
+        btn_tambahMobil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/tambah.png"))); // NOI18N
         btn_tambahMobil.setText("Tambah Mobil         ");
         btn_tambahMobil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_tambahMobil.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +104,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_tambahSupir.setBackground(new java.awt.Color(255, 255, 255));
         btn_tambahSupir.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
-        btn_tambahSupir.setIcon(new javax.swing.ImageIcon("C:\\Users\\zulfi\\OneDrive\\Documents\\NetBeansProjects\\Rental\\Rentalmobil\\src\\gambar\\seatbelt.png")); // NOI18N
+        btn_tambahSupir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/seatbelt.png"))); // NOI18N
         btn_tambahSupir.setText("Tambah Supir           ");
         btn_tambahSupir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_tambahSupir.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +115,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_tambahUser.setBackground(new java.awt.Color(255, 255, 255));
         btn_tambahUser.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
-        btn_tambahUser.setIcon(new javax.swing.ImageIcon("C:\\Users\\zulfi\\OneDrive\\Documents\\NetBeansProjects\\Rental\\Rentalmobil\\src\\gambar\\add-user.png")); // NOI18N
+        btn_tambahUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/add-user.png"))); // NOI18N
         btn_tambahUser.setText("Tambah Karyawan   ");
         btn_tambahUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_tambahUser.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +126,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_Login.setBackground(new java.awt.Color(255, 255, 255));
         btn_Login.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
-        btn_Login.setIcon(new javax.swing.ImageIcon("C:\\Users\\zulfi\\OneDrive\\Documents\\NetBeansProjects\\Rental\\Rentalmobil\\src\\gambar\\arrow.png")); // NOI18N
+        btn_Login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/arrow.png"))); // NOI18N
         btn_Login.setText(" Keluar                   ");
         btn_Login.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_Login.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +173,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(260, 180, 840, 400);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\jaz.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/jaz.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1370, 730);
 

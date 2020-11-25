@@ -161,7 +161,7 @@
                   <Font name="Quicksand Medium" size="24" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\zulfi\OneDrive\Documents\NetBeansProjects\Rental\Rentalmobil\src\gambar\kembali.png"/>
+                  <Image iconType="3" name="/gambar/kembali.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pengembalian Mobil"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -183,7 +183,7 @@
                   <Font name="Quicksand Medium" size="24" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\zulfi\OneDrive\Documents\NetBeansProjects\Rental\Rentalmobil\src\gambar\tambah.png"/>
+                  <Image iconType="3" name="/gambar/tambah.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tambah Mobil         "/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -205,7 +205,7 @@
                   <Font name="Quicksand Medium" size="24" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\zulfi\OneDrive\Documents\NetBeansProjects\Rental\Rentalmobil\src\gambar\seatbelt.png"/>
+                  <Image iconType="3" name="/gambar/seatbelt.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tambah Supir           "/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -227,7 +227,7 @@
                   <Font name="Quicksand Medium" size="24" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\zulfi\OneDrive\Documents\NetBeansProjects\Rental\Rentalmobil\src\gambar\add-user.png"/>
+                  <Image iconType="3" name="/gambar/add-user.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tambah Karyawan   "/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -249,7 +249,7 @@
                   <Font name="Quicksand Medium" size="24" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\zulfi\OneDrive\Documents\NetBeansProjects\Rental\Rentalmobil\src\gambar\arrow.png"/>
+                  <Image iconType="3" name="/gambar/arrow.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value=" Keluar                   "/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -267,7 +267,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\jaz.jpg"/>
+              <Image iconType="3" name="/gambar/jaz.jpg"/>
             </Property>
           </Properties>
           <Constraints>
