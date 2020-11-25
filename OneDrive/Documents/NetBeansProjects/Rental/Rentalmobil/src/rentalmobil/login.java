@@ -14,7 +14,7 @@ import sun.misc.Cleaner;
 
 /**
  *
- * @author zulfi
+ * @author zulfi cogan 
  */
 public class login extends javax.swing.JFrame {
 
