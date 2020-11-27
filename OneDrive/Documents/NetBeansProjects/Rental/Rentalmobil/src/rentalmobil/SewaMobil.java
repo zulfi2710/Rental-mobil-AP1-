@@ -439,6 +439,11 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel21.setText("Status                :");
 
         cb_mobil.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        cb_mobil.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_mobilItemStateChanged(evt);
+            }
+        });
         cb_mobil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_mobilActionPerformed(evt);
@@ -607,11 +612,31 @@ public class SewaMobil extends javax.swing.JFrame {
         // panel mobil
         String st = (String) cb_mobil.getSelectedItem();
         ResultSet rst = con.querySelectAll("tb_mobil", "tipe='" + st + "'");
+        if(cb_mobil.getItemCount()!=0)
+        {
+           try{
+           String query="select nopol from tb_mobil where tipe='"+cb_mobil.getSelectedItem()+"'";
+           ResultSet rsts = con.eksekusiQuery(query);
+           cb_Nopolisi.removeAllItems();
+           while(rsts.next())
+           {
+               cb_Nopolisi.addItem(rsts.getString("nopol"));
+           }
+           }catch(Exception e){
+               
+           }
+           
+        }
+        else
+        {
+                    
+        }
         try {
+        
             while (rst.next()) {
 
                 this.lb_Merek.setText(rst.getString("merek"));
-//                this.cb_Nopolisi.getSelectedItem(rst.get);
+                
                 this.lb_Tahun.setText(rst.getString("tahun"));
                 this.lb_Harga.setText(rst.getString("harga"));
                 this.lb_Status.setText(rst.getString("status"));
@@ -620,6 +645,28 @@ public class SewaMobil extends javax.swing.JFrame {
             Logger.getLogger(SewaMobil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cb_mobilActionPerformed
+
+    private void cb_mobilItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_mobilItemStateChanged
+        // TODO add your handling code here:
+//        if(cb_mobil.getItemCount()!=0)
+//        {
+//           try{
+//               String query="select nopol from tb_mobil where tipe='"+cb_mobil.getSelectedItem()+"'";
+//           ResultSet rsts = con.eksekusiQuery(query);
+//           while(rsts.next())
+//           {
+//               cb_Nopolisi.addItem(rsts.getString("nopol"));
+//           }
+//           }catch(Exception e){
+//               
+//           }
+//           
+//        }
+//        else
+//        {
+//                    
+//        }
+    }//GEN-LAST:event_cb_mobilItemStateChanged
 
     /**
      * @param args the command line arguments
