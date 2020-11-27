@@ -5,14 +5,29 @@
  */
 package rentalmobil;
 
+import Database.KoneksiDatabase;
+import Database.ResultSetTable;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author zulfi
  */
 public class SewaMobil extends javax.swing.JFrame {
-
+ ResultSet rs;
+    KoneksiDatabase con;
+    static String nama;
+    static String nik;
+    static String alamat;
+    static String tlp;
+    static String email;
+    String status1;
+    
     /**
      * Creates new form SewaMobil
      */
@@ -21,6 +36,11 @@ public class SewaMobil extends javax.swing.JFrame {
         jPanel2.setBackground(new Color(0,0,0,120));
         jPanel3.setBackground(new Color(0,0,0,120));
         jPanel4.setBackground(new Color(0,0,0,120));
+        
+        con = new KoneksiDatabase(new Database.Parameter().HOST_DB, new Database.Parameter().USERNAME_DB, new Database.Parameter().PASSWORD_DB);
+        
+        loadMobil();
+        loadTabel();
                 
     }
 
@@ -62,7 +82,7 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         txt_lamaSupir = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        jComboBoxsupir = new javax.swing.JComboBox<>();
+        cb_Supir = new javax.swing.JComboBox<>();
         btn_hitung = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
         jLabeltotal = new javax.swing.JLabel();
@@ -76,14 +96,14 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jComboBoxMobil = new javax.swing.JComboBox<>();
-        jLabelnopolisi = new javax.swing.JLabel();
-        jLabeltahun = new javax.swing.JLabel();
-        jLabelmerk = new javax.swing.JLabel();
-        jLabelharga = new javax.swing.JLabel();
-        jLabelstatus = new javax.swing.JLabel();
+        cb_mobil = new javax.swing.JComboBox<>();
+        cb_Nopolisi = new javax.swing.JComboBox<>();
+        lb_Merek = new javax.swing.JLabel();
+        lb_Tahun = new javax.swing.JLabel();
+        lb_Harga = new javax.swing.JLabel();
+        lb_Status = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbl_sewa = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -186,7 +206,7 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SEWA MOBIL");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(560, 10, 240, 45);
+        jLabel2.setBounds(560, 10, 240, 47);
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
@@ -209,7 +229,7 @@ public class SewaMobil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonprint);
-        jButtonprint.setBounds(760, 590, 160, 33);
+        jButtonprint.setBounds(760, 590, 160, 35);
 
         jButtonEdit.setBackground(new java.awt.Color(255, 255, 255));
         jButtonEdit.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
@@ -221,14 +241,19 @@ public class SewaMobil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonEdit);
-        jButtonEdit.setBounds(940, 590, 160, 33);
+        jButtonEdit.setBounds(940, 590, 160, 35);
 
         jButtonSewa.setBackground(new java.awt.Color(255, 255, 255));
         jButtonSewa.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
         jButtonSewa.setText("Sewa Mobil");
         jButtonSewa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonSewa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSewaActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonSewa);
-        jButtonSewa.setBounds(1120, 590, 137, 33);
+        jButtonSewa.setBounds(1120, 590, 135, 35);
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -284,8 +309,8 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Hari");
 
-        jComboBoxsupir.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jComboBoxsupir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_Supir.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        cb_Supir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btn_hitung.setBackground(new java.awt.Color(255, 255, 255));
         btn_hitung.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
@@ -316,7 +341,7 @@ public class SewaMobil extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jComboBoxsupir, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cb_Supir, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jDatetglpeminjaman1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,7 +387,7 @@ public class SewaMobil extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxsupir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cb_Supir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -413,28 +438,28 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Status                :");
 
-        jComboBoxMobil.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jComboBoxMobil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_mobil.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        cb_mobil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_mobilActionPerformed(evt);
+            }
+        });
 
-        jLabelnopolisi.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jLabelnopolisi.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelnopolisi.setText("No polisi");
+        lb_Merek.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        lb_Merek.setForeground(new java.awt.Color(255, 255, 255));
+        lb_Merek.setText("Merk");
 
-        jLabeltahun.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jLabeltahun.setForeground(new java.awt.Color(255, 255, 255));
-        jLabeltahun.setText("th mobil");
+        lb_Tahun.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        lb_Tahun.setForeground(new java.awt.Color(255, 255, 255));
+        lb_Tahun.setText("th mobil");
 
-        jLabelmerk.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jLabelmerk.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelmerk.setText("Merk");
+        lb_Harga.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        lb_Harga.setForeground(new java.awt.Color(255, 255, 255));
+        lb_Harga.setText("Harga");
 
-        jLabelharga.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jLabelharga.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelharga.setText("Harga");
-
-        jLabelstatus.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jLabelstatus.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelstatus.setText("Status");
+        lb_Status.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        lb_Status.setForeground(new java.awt.Color(255, 255, 255));
+        lb_Status.setText("Status");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -450,14 +475,17 @@ public class SewaMobil extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(jLabel20)
                     .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBoxMobil, 0, 221, Short.MAX_VALUE)
-                    .addComponent(jLabelnopolisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabeltahun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelmerk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelharga, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelstatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cb_mobil, 0, 221, Short.MAX_VALUE)
+                            .addComponent(lb_Tahun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lb_Merek, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lb_Harga, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lb_Status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cb_Nopolisi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(23, 23, 23))
         );
         jPanel4Layout.setVerticalGroup(
@@ -468,35 +496,35 @@ public class SewaMobil extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jComboBoxMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_mobil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jLabelmerk, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lb_Merek, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jLabelnopolisi, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cb_Nopolisi, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jLabeltahun, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lb_Tahun, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jLabelharga, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lb_Harga, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jLabelstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(lb_Status, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(10, 400, 380, 310);
 
-        jTable2.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_sewa.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
+        tbl_sewa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -507,7 +535,7 @@ public class SewaMobil extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tbl_sewa);
 
         jPanel1.add(jScrollPane3);
         jScrollPane3.setBounds(650, 70, 700, 402);
@@ -554,6 +582,45 @@ public class SewaMobil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_lamaPinjamActionPerformed
 
+    private void jButtonSewaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSewaActionPerformed
+        // 
+        
+         if (txt_nik.getText().isEmpty() || txt_nama.getText().isEmpty() || txt_alamat.getText().isEmpty ()|| txt_notelp.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Data isian ada yang kosong");
+        } else {
+            String nik = txt_nik.getText();
+            String nama = txt_nama.getText();
+            String alamat = txt_alamat.getText();
+            String tlp = txt_notelp.getText();
+            
+//            Menu.jDesktopPane1.removeAll();
+//            Menu.jDesktopPane1.repaint();
+//            Form_Transaksi fm = new Form_Transaksi(nama, nik, alamat, tlp, email);
+
+//            fm.setVisible(true);
+//            Home.jDesktopPane1.add(fm);
+        }
+    
+    }//GEN-LAST:event_jButtonSewaActionPerformed
+
+    private void cb_mobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_mobilActionPerformed
+        // panel mobil
+        String st = (String) cb_mobil.getSelectedItem();
+        ResultSet rst = con.querySelectAll("tb_mobil", "tipe='" + st + "'");
+        try {
+            while (rst.next()) {
+
+                this.lb_Merek.setText(rst.getString("merek"));
+//                this.cb_Nopolisi.getSelectedItem(rst.get);
+                this.lb_Tahun.setText(rst.getString("tahun"));
+                this.lb_Harga.setText(rst.getString("harga"));
+                this.lb_Status.setText(rst.getString("status"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SewaMobil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cb_mobilActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -591,12 +658,13 @@ public class SewaMobil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_hitung;
+    private javax.swing.JComboBox<String> cb_Nopolisi;
+    private javax.swing.JComboBox<String> cb_Supir;
+    private javax.swing.JComboBox<String> cb_mobil;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonSewa;
     private javax.swing.JButton jButtonprint;
-    private javax.swing.JComboBox<String> jComboBoxMobil;
-    private javax.swing.JComboBox<String> jComboBoxsupir;
     private com.toedter.calendar.JDateChooser jDatetglpeminjaman1;
     private com.toedter.calendar.JDateChooser jDatetglpengembalian;
     private javax.swing.JLabel jLabel1;
@@ -623,11 +691,6 @@ public class SewaMobil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelharga;
-    private javax.swing.JLabel jLabelmerk;
-    private javax.swing.JLabel jLabelnopolisi;
-    private javax.swing.JLabel jLabelstatus;
-    private javax.swing.JLabel jLabeltahun;
     private javax.swing.JLabel jLabeltotal;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -635,7 +698,11 @@ public class SewaMobil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lb_Harga;
+    private javax.swing.JLabel lb_Merek;
+    private javax.swing.JLabel lb_Status;
+    private javax.swing.JLabel lb_Tahun;
+    private javax.swing.JTable tbl_sewa;
     private javax.swing.JTextArea txt_alamat;
     private javax.swing.JTextField txt_lamaPinjam;
     private javax.swing.JTextField txt_lamaSupir;
@@ -643,4 +710,25 @@ public class SewaMobil extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nik;
     private javax.swing.JTextField txt_notelp;
     // End of variables declaration//GEN-END:variables
+
+ private void loadMobil() {  // mengambil database
+
+        rs = con.querySelectAll("tb_mobil");
+        try {
+            while (rs.next()) {
+                cb_mobil.addItem(rs.getString("tipe"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SewaMobil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+ 
+ private void loadTabel() {
+        String namaKolom[] = {"id_sewa", "NIK", "Nama", "Alamat", "No_telp", "Tipe_mobil", "No_polisi", "harga","Tgl_peminjaman","Tgl_pengembalian"}; //,
+        rs = con.querySelect(namaKolom, "sewa_mobil");
+        tbl_sewa.setModel(new ResultSetTable(rs)); //,"tgl_pinjam","tgl_kembali" ,jDateChooser1.getDateFormatString(),jDateChooser2.getDateFormatString()
+    }
+
 }
