@@ -206,7 +206,7 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SEWA MOBIL");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(560, 10, 240, 47);
+        jLabel2.setBounds(560, 10, 240, 45);
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
@@ -229,7 +229,7 @@ public class SewaMobil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonprint);
-        jButtonprint.setBounds(760, 590, 160, 35);
+        jButtonprint.setBounds(760, 590, 160, 33);
 
         jButtonEdit.setBackground(new java.awt.Color(255, 255, 255));
         jButtonEdit.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
@@ -241,7 +241,7 @@ public class SewaMobil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonEdit);
-        jButtonEdit.setBounds(940, 590, 160, 35);
+        jButtonEdit.setBounds(940, 590, 160, 33);
 
         jButtonSewa.setBackground(new java.awt.Color(255, 255, 255));
         jButtonSewa.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
@@ -253,7 +253,7 @@ public class SewaMobil extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSewa);
-        jButtonSewa.setBounds(1120, 590, 135, 35);
+        jButtonSewa.setBounds(1120, 590, 137, 33);
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -612,6 +612,7 @@ public class SewaMobil extends javax.swing.JFrame {
         // panel mobil
         String st = (String) cb_mobil.getSelectedItem();
         ResultSet rst = con.querySelectAll("tb_mobil", "tipe='" + st + "'");
+//        ResultSet rst = con.eksekusiQuery("Select distinct tb_mobil where tipe='" + st + "'");
         if(cb_mobil.getItemCount()!=0)
         {
            try{
@@ -760,7 +761,9 @@ public class SewaMobil extends javax.swing.JFrame {
 
  private void loadMobil() {  // mengambil database
 
-        rs = con.querySelectAll("tb_mobil");
+//        rs = con.querySelectAll("tb_mobil");
+        String query="select distinct tipe from tb_mobil ";
+        rs = con.eksekusiQuery(query);
         try {
             while (rs.next()) {
                 cb_mobil.addItem(rs.getString("tipe"));

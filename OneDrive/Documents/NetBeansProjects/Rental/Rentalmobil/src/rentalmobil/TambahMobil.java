@@ -299,15 +299,6 @@ public class TambahMobil extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tablemobil);
-        if (tablemobil.getColumnModel().getColumnCount() > 0) {
-            tablemobil.getColumnModel().getColumn(0).setHeaderValue("id Mobil");
-            tablemobil.getColumnModel().getColumn(1).setHeaderValue("Merk Mobil");
-            tablemobil.getColumnModel().getColumn(2).setHeaderValue("Tipe Mobil");
-            tablemobil.getColumnModel().getColumn(3).setHeaderValue("No. Polisi");
-            tablemobil.getColumnModel().getColumn(4).setHeaderValue("Tahun");
-            tablemobil.getColumnModel().getColumn(5).setHeaderValue("Harga Sewa");
-            tablemobil.getColumnModel().getColumn(6).setHeaderValue("Status");
-        }
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(570, 150, 750, 402);
