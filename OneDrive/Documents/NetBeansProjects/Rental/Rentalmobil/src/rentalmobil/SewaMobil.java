@@ -71,6 +71,7 @@ public class SewaMobil extends javax.swing.JFrame {
         jButtonprint = new javax.swing.JButton();
         jButtonEdit = new javax.swing.JButton();
         jButtonSewa = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -166,9 +167,8 @@ public class SewaMobil extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_nama, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txt_notelp)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                            .addComponent(txt_notelp)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                             .addComponent(txt_nik))))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
@@ -202,7 +202,7 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SEWA MOBIL");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(520, 10, 330, 60);
+        jLabel2.setBounds(520, 10, 330, 62);
 
         jButtonprint.setBackground(new java.awt.Color(255, 255, 255));
         jButtonprint.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
@@ -241,6 +241,17 @@ public class SewaMobil extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonSewa);
         jButtonSewa.setBounds(1030, 660, 190, 40);
+
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5);
+        jButton5.setBounds(10, 10, 30, 30);
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -688,6 +699,10 @@ public class SewaMobil extends javax.swing.JFrame {
        hitungselisih();
     }//GEN-LAST:event_btn_hitungActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -728,6 +743,7 @@ public class SewaMobil extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_Nopolisi;
     private javax.swing.JComboBox<String> cb_Supir;
     private javax.swing.JComboBox<String> cb_mobil;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonSewa;
     private javax.swing.JButton jButtonprint;
@@ -810,7 +826,7 @@ public class SewaMobil extends javax.swing.JFrame {
  
  public void hitungselisih() {
          try {
-            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             String strDate1 = df.format(jDatetglpeminjaman1.getDate());
             String strDate2 = df.format(jDatetglpengembalian.getDate());
             Date Tanggal1 = df.parse(strDate1);
@@ -852,10 +868,12 @@ public class SewaMobil extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(this, "maaf mobil ini sedang tidak tersedia");
                 } else {
-                    String kolom[] = {"NIK","Nama","Alamat", "No_telp","Tipe_mobil","No_polisi","Harga", "Tgl_peminjaman", "Tgl_pengembalian","Lama_mobil","Supir","Lama_supir", "Total"};
                     java.util.Date tgl = (java.util.Date) this.jDatetglpeminjaman1.getDate();
                     java.util.Date tgl1 = (java.util.Date) this.jDatetglpengembalian.getDate();
-
+                    String kolom[] = {"NIK","Nama","Alamat", "No_telp","Tipe_mobil","No_polisi","Harga", "Tgl_peminjaman", "Tgl_pengembalian","Lama_mobil","Supir","Lama_supir", "Total"};
+                    String isi[] = {txt_nik.getText(),txt_nama.getText(),txt_alamat.getText(),txt_notelp.getText(),cb_mobil.getSelectedItem().toString(),cb_Nopolisi.getSelectedItem().toString(),lb_Harga.getText(),jDatetglpeminjaman1.getDateFormatString().toString(),jDatetglpengembalian.getDateFormatString().toString(),txt_lamaPinjam.getText(),cb_Supir.getSelectedItem().toString(),txt_lamaSupir.getText(),lb_total.getText()};
+                    
+                    System.out.println( con.queryInsert("sewa_mobil",kolom,isi));
                    
                     JOptionPane.showMessageDialog(this, "Data Berhasil Disimpan");
                     cekstatus();
