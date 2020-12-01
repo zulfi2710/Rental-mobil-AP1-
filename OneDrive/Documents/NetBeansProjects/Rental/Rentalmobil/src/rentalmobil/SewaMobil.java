@@ -871,7 +871,7 @@ public class SewaMobil extends javax.swing.JFrame {
                     java.util.Date tgl = (java.util.Date) this.jDatetglpeminjaman1.getDate();
                     java.util.Date tgl1 = (java.util.Date) this.jDatetglpengembalian.getDate();
                     String kolom[] = {"NIK","Nama","Alamat", "No_telp","Tipe_mobil","No_polisi","Harga", "Tgl_peminjaman", "Tgl_pengembalian","Lama_mobil","Supir","Lama_supir", "Total"};
-                    String isi[] = {txt_nik.getText(),txt_nama.getText(),txt_alamat.getText(),txt_notelp.getText(),cb_mobil.getSelectedItem().toString(),cb_Nopolisi.getSelectedItem().toString(),lb_Harga.getText(),jDatetglpeminjaman1.getDateFormatString().toString(),jDatetglpengembalian.getDateFormatString().toString(),txt_lamaPinjam.getText(),cb_Supir.getSelectedItem().toString(),txt_lamaSupir.getText(),lb_total.getText()};
+                    String isi[] = {txt_nik.getText(),txt_nama.getText(),txt_alamat.getText(),txt_notelp.getText(),cb_mobil.getSelectedItem().toString(),cb_Nopolisi.getSelectedItem().toString(),lb_Harga.getText(),new java.sql.Date(tgl.getTime()).toString(),new java.sql.Date(tgl1.getTime()).toString(),txt_lamaPinjam.getText(),cb_Supir.getSelectedItem().toString(),txt_lamaSupir.getText(),lb_total.getText()};
                     
                     System.out.println( con.queryInsert("sewa_mobil",kolom,isi));
                    
