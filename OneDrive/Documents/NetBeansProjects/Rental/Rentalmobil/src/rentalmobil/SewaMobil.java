@@ -878,7 +878,7 @@ public class SewaMobil extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Data Berhasil Disimpan");
                     cekstatus();
                     
-                    ///// iki fentch
+                    ///// iki fentch dsaldklsakd
                    
                 }
 
