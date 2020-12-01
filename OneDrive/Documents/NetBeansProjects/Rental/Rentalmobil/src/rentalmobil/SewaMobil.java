@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author zulfi
+ * @author zulfi ganteng aslie
  */
 public class SewaMobil extends javax.swing.JFrame {
  ResultSet rs;
