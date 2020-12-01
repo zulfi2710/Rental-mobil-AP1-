@@ -5,7 +5,14 @@
  */
 package rentalmobil;
 
+import Database.KoneksiDatabase;
+import Database.ResultSetTable;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,9 +23,15 @@ public class Pengembalian extends javax.swing.JFrame {
     /**
      * Creates new form Pengembalian
      */
+    ResultSet rs;
+    KoneksiDatabase con;
+    String status1;
     public Pengembalian() {
         initComponents();
-         jPanel2.setBackground(new Color(0,0,0,120));
+         jPanel2.setBackground(new Color(0,0,0,200));
+         con = new KoneksiDatabase(new Database.Parameter().HOST_DB, new Database.Parameter().USERNAME_DB, new Database.Parameter().PASSWORD_DB);
+         loadTabel();
+         loadMobil();
     }
 
     /**
@@ -33,12 +46,9 @@ public class Pengembalian extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -49,21 +59,20 @@ public class Pengembalian extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jComboBoxTipeMobil = new javax.swing.JComboBox<>();
+        cb_nopol = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
-        jLabelNik = new javax.swing.JLabel();
-        jLabelTglpeminjman = new javax.swing.JLabel();
-        jLabelNama = new javax.swing.JLabel();
-        jLabelTglpengembalian = new javax.swing.JLabel();
-        jLabelAlamat = new javax.swing.JLabel();
-        jLabelLamaPeminjamanMobil = new javax.swing.JLabel();
-        jLabelNotelp = new javax.swing.JLabel();
-        jLabelLamaSupir = new javax.swing.JLabel();
-        jLabelThMobil = new javax.swing.JLabel();
-        jLabelTotal = new javax.swing.JLabel();
-        jLabelhargaperhari = new javax.swing.JLabel();
+        lb_pemnjaman = new javax.swing.JLabel();
+        lb_nama = new javax.swing.JLabel();
+        lb_pengembalian = new javax.swing.JLabel();
+        lb_lama = new javax.swing.JLabel();
+        lb_notelp = new javax.swing.JLabel();
+        lb_lamasupir = new javax.swing.JLabel();
+        lb_total = new javax.swing.JLabel();
+        lb_harga = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        cb_tipe = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_pengembalian = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButtonKembalikan = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -80,124 +89,112 @@ public class Pengembalian extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel4.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("NIk");
-
-        jLabel6.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nama");
 
-        jLabel5.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Alamat");
-
-        jLabel7.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("No. Telp");
 
-        jLabel8.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Tipe Mobil");
+        jLabel8.setText("No Polisi");
 
-        jLabel9.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Th Mobil");
-
-        jLabel10.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Harga(perhari)");
 
-        jLabel11.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Tanggal Peminjaman");
 
-        jLabel12.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Tanggal Pengembalian");
 
-        jLabel13.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Lama Peminjaman");
 
-        jLabel14.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Supir");
 
-        jLabel15.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Lama Supir");
 
         jComboBoxSupir.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jComboBoxSupir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSupir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih" }));
 
-        jLabel17.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Hari");
 
-        jLabel18.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Total");
 
-        jLabel19.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Rp.");
 
-        jComboBoxTipeMobil.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jComboBoxTipeMobil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxTipeMobil.addActionListener(new java.awt.event.ActionListener() {
+        cb_nopol.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        cb_nopol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih" }));
+        cb_nopol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxTipeMobilActionPerformed(evt);
+                cb_nopolActionPerformed(evt);
             }
         });
 
-        jLabel20.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Hari");
 
-        jLabelNik.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelNik.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelNik.setText("NIk");
+        lb_pemnjaman.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_pemnjaman.setForeground(new java.awt.Color(255, 255, 255));
+        lb_pemnjaman.setText("Tanggal Peminjaman");
 
-        jLabelTglpeminjman.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelTglpeminjman.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTglpeminjman.setText("Tanggal Peminjaman");
+        lb_nama.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_nama.setForeground(new java.awt.Color(255, 255, 255));
+        lb_nama.setText("Nama");
 
-        jLabelNama.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelNama.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelNama.setText("Nama");
+        lb_pengembalian.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_pengembalian.setForeground(new java.awt.Color(255, 255, 255));
+        lb_pengembalian.setText("Tanggal Pengembalian");
 
-        jLabelTglpengembalian.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelTglpengembalian.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTglpengembalian.setText("Tanggal Pengembalian");
+        lb_lama.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_lama.setForeground(new java.awt.Color(255, 255, 255));
+        lb_lama.setText("0");
 
-        jLabelAlamat.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelAlamat.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelAlamat.setText("Alamat");
+        lb_notelp.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_notelp.setForeground(new java.awt.Color(255, 255, 255));
+        lb_notelp.setText("No. Telp");
 
-        jLabelLamaPeminjamanMobil.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelLamaPeminjamanMobil.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelLamaPeminjamanMobil.setText("Lama Peminjaman");
+        lb_lamasupir.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_lamasupir.setForeground(new java.awt.Color(255, 255, 255));
+        lb_lamasupir.setText("0");
 
-        jLabelNotelp.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelNotelp.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelNotelp.setText("No. Telp");
+        lb_total.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_total.setForeground(new java.awt.Color(255, 255, 255));
+        lb_total.setText("00000");
 
-        jLabelLamaSupir.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelLamaSupir.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelLamaSupir.setText("Lama Supir");
+        lb_harga.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_harga.setForeground(new java.awt.Color(255, 255, 255));
+        lb_harga.setText("Harga(perhari)");
 
-        jLabelThMobil.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelThMobil.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelThMobil.setText("Th Mobil");
+        jLabel16.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Tipe Mobil");
 
-        jLabelTotal.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jLabelTotal.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTotal.setText("00000");
-
-        jLabelhargaperhari.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
-        jLabelhargaperhari.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelhargaperhari.setText("Harga(perhari)");
+        cb_tipe.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        cb_tipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih" }));
+        cb_tipe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_tipeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -206,47 +203,47 @@ public class Pengembalian extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(cb_nopol, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(lb_nama)
+                    .addComponent(lb_notelp)
+                    .addComponent(jLabel16)
+                    .addComponent(cb_tipe, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jComboBoxTipeMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabelNik)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabelNama)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabelAlamat)
-                            .addComponent(jLabelNotelp)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabelThMobil))
-                        .addGap(75, 75, 75)
+                    .addComponent(lb_harga))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel19)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabelTotal))
+                                .addComponent(lb_total))
                             .addComponent(jLabel18)
                             .addComponent(jLabel13)
                             .addComponent(jLabel12)
-                            .addComponent(jLabelTglpengembalian)
+                            .addComponent(lb_pengembalian)
                             .addComponent(jLabel11)
                             .addComponent(jLabel14)
                             .addComponent(jLabel15)
                             .addComponent(jComboBoxSupir, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelTglpeminjman)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabelLamaSupir)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel17))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabelLamaPeminjamanMobil)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel20)))))
-                    .addComponent(jLabelhargaperhari))
-                .addContainerGap(20, Short.MAX_VALUE))
+                            .addComponent(lb_pemnjaman))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(lb_lama)
+                                .addGap(66, 66, 66))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(lb_lamasupir)
+                                .addGap(67, 67, 67)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel17))
+                        .addGap(48, 48, 48))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,47 +251,20 @@ public class Pengembalian extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelNik)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelNama))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelTglpeminjman)
-                        .addGap(18, 18, 18)
+                        .addComponent(lb_pemnjaman)
+                        .addGap(13, 13, 13)
                         .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelTglpengembalian)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelAlamat)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabelLamaPeminjamanMobil))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelNotelp)
+                        .addComponent(lb_pengembalian)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
+                        .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxTipeMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelThMobil)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_lama)
+                            .addComponent(jLabel20))
+                        .addGap(7, 7, 7)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxSupir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,24 +272,42 @@ public class Pengembalian extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelLamaSupir)
+                            .addComponent(lb_lamasupir)
                             .addComponent(jLabel17))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel19)
-                            .addComponent(jLabelTotal))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelhargaperhari)
-                .addContainerGap(130, Short.MAX_VALUE))
+                            .addComponent(lb_total)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_nama)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lb_notelp)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cb_tipe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cb_nopol, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lb_harga)))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 80, 430, 610);
+        jPanel2.setBounds(10, 80, 430, 590);
 
-        jTable1.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_pengembalian.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
+        tb_pengembalian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -330,7 +318,7 @@ public class Pengembalian extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13", "Title 14"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_pengembalian);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(450, 80, 890, 460);
@@ -349,6 +337,11 @@ public class Pengembalian extends javax.swing.JFrame {
         jButtonKembalikan.setBackground(new java.awt.Color(255, 255, 255));
         jButtonKembalikan.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
         jButtonKembalikan.setText("Kembalikan Mobil");
+        jButtonKembalikan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKembalikanActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonKembalikan);
         jButtonKembalikan.setBounds(770, 590, 250, 39);
 
@@ -374,9 +367,39 @@ public class Pengembalian extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jComboBoxTipeMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipeMobilActionPerformed
+    private void cb_nopolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_nopolActionPerformed
+       String st = (String) cb_nopol.getSelectedItem();
+        ResultSet rst = con.querySelectAll("sewa_mobil", "No_polisi='" + st + "'");
+        try {
+            while (rst.next()) {
+                this.lb_nama.setText(rst.getString("Nama"));
+                this.lb_notelp.setText(rst.getString("No_telp"));   
+                this.lb_harga.setText(rst.getString("Harga"));
+                this.lb_pengembalian.setText(rst.getString("Tgl_pengembalian"));
+                this.lb_pemnjaman.setText(rst.getString("Tgl_peminjaman"));
+                this.lb_lama.setText(rst.getString("Lama_mobil"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pengembalian.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cb_nopolActionPerformed
+
+    private void jButtonKembalikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKembalikanActionPerformed
+        try {
+            hapus_transaksi();
+            cekstatus();
+            loadTabel();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pengembalian.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }//GEN-LAST:event_jButtonKembalikanActionPerformed
+
+    private void cb_tipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_tipeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxTipeMobilActionPerformed
+    }//GEN-LAST:event_cb_tipeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,10 +437,11 @@ public class Pengembalian extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_nopol;
+    private javax.swing.JComboBox<String> cb_tipe;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonKembalikan;
     private javax.swing.JComboBox<String> jComboBoxSupir;
-    private javax.swing.JComboBox<String> jComboBoxTipeMobil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -425,31 +449,65 @@ public class Pengembalian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelAlamat;
-    private javax.swing.JLabel jLabelLamaPeminjamanMobil;
-    private javax.swing.JLabel jLabelLamaSupir;
-    private javax.swing.JLabel jLabelNama;
-    private javax.swing.JLabel jLabelNik;
-    private javax.swing.JLabel jLabelNotelp;
-    private javax.swing.JLabel jLabelTglpeminjman;
-    private javax.swing.JLabel jLabelTglpengembalian;
-    private javax.swing.JLabel jLabelThMobil;
-    private javax.swing.JLabel jLabelTotal;
-    private javax.swing.JLabel jLabelhargaperhari;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lb_harga;
+    private javax.swing.JLabel lb_lama;
+    private javax.swing.JLabel lb_lamasupir;
+    private javax.swing.JLabel lb_nama;
+    private javax.swing.JLabel lb_notelp;
+    private javax.swing.JLabel lb_pemnjaman;
+    private javax.swing.JLabel lb_pengembalian;
+    private javax.swing.JLabel lb_total;
+    private javax.swing.JTable tb_pengembalian;
     // End of variables declaration//GEN-END:variables
+
+    private void loadMobil() {  // mengambil database
+
+        rs = con.querySelectAll("sewa_mobil");
+        try {
+            while (rs.next()) {
+                cb_nopol.addItem(rs.getString("No_polisi"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pengembalian.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void cekstatus() throws SQLException {
+        rs = con.querySelectAll("tb_mobil", "nopol ='" + cb_nopol.getSelectedItem().toString() + "'");
+        while (rs.next()) {
+            status1 = rs.getString("status");
+
+        }
+        String update_status = "Tersedia";
+        String kolom[] = {"status"};
+        String isi[] = {update_status};
+        con.queryUpdate("tb_mobil", kolom, isi, "nopol='" + cb_nopol.getSelectedItem().toString() + "'");
+    }
+
+    public void hapus_transaksi() {
+        if (JOptionPane.showConfirmDialog(this, "Yakin Mengembalikan Mobil ?", "Peringatan", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+            con.queryDelete("sewa_mobil", "No_polisi='" + cb_nopol.getSelectedItem().toString() + "'");
+        }
+
+    }
+  
+    private void loadTabel() {
+        String namaKolom[] = {"id_sewa","Nama", "No_telp", "Tipe_mobil", "No_polisi", "harga","Tgl_peminjaman","Tgl_pengembalian","Lama_mobil", "Supir","Lama_supir","Total"}; //,
+        rs = con.querySelect(namaKolom, "sewa_mobil");
+        tb_pengembalian.setModel(new ResultSetTable(rs)); //,"tgl_pinjam","tgl_kembali" ,jDateChooser1.getDateFormatString(),jDateChooser2.getDateFormatString()
+    }
 }

@@ -202,7 +202,7 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SEWA MOBIL");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(520, 10, 330, 62);
+        jLabel2.setBounds(520, 10, 330, 60);
 
         jButtonprint.setBackground(new java.awt.Color(255, 255, 255));
         jButtonprint.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
@@ -377,8 +377,8 @@ public class SewaMobil extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lb_total, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                        .addComponent(lb_total, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -895,11 +895,15 @@ public class SewaMobil extends javax.swing.JFrame {
     }
  
  private void clear() {
-        lb_total.setText("");
+        txt_nik.setText("");
+        txt_nama.setText("");
+        txt_alamat.setText("");
+        txt_notelp.setText("");
         txt_lamaPinjam.setText("");
+        txt_lamaSupir.setText("");
         // boxnopol.addItem(rs.getString("nopol"));
-        //jDateChooser1.addNotify();
-        //jDateChooser2.addNotify();
+        jDatetglpeminjaman1.addNotify();
+        jDatetglpengembalian.addNotify();
     }
 
     public void cekstatus() throws SQLException {
