@@ -506,7 +506,7 @@ public class Pengembalian extends javax.swing.JFrame {
     }
   
     private void loadTabel() {
-        String namaKolom[] = {"id_sewa","Nama", "No_telp", "Tipe_mobil", "No_polisi", "harga","Tgl_peminjaman","Tgl_pengembalian","Lama_mobil", "Supir","Lama_supir","Total"}; //,
+        String namaKolom[] = {"Nama", "No_telp", "Tipe_mobil", "No_polisi", "harga","Tgl_peminjaman","Tgl_pengembalian","Lama_mobil", "Supir","Lama_supir","Total"}; //,
         rs = con.querySelect(namaKolom, "sewa_mobil");
         tb_pengembalian.setModel(new ResultSetTable(rs)); //,"tgl_pinjam","tgl_kembali" ,jDateChooser1.getDateFormatString(),jDateChooser2.getDateFormatString()
     }
