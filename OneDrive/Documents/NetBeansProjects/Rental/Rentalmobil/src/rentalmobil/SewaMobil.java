@@ -69,7 +69,7 @@ public class SewaMobil extends javax.swing.JFrame {
         txt_alamat = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jButtonprint = new javax.swing.JButton();
-        jButtonEdit = new javax.swing.JButton();
+        btn_edit = new javax.swing.JButton();
         jButtonSewa = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -202,7 +202,7 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SEWA MOBIL");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(520, 10, 330, 60);
+        jLabel2.setBounds(520, 10, 330, 62);
 
         jButtonprint.setBackground(new java.awt.Color(255, 255, 255));
         jButtonprint.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
@@ -216,18 +216,18 @@ public class SewaMobil extends javax.swing.JFrame {
         jPanel1.add(jButtonprint);
         jButtonprint.setBounds(670, 660, 160, 40);
 
-        jButtonEdit.setBackground(new java.awt.Color(0, 204, 51));
-        jButtonEdit.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
-        jButtonEdit.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonEdit.setText("Edit");
-        jButtonEdit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
+        btn_edit.setBackground(new java.awt.Color(0, 204, 51));
+        btn_edit.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
+        btn_edit.setForeground(new java.awt.Color(255, 255, 255));
+        btn_edit.setText("Edit");
+        btn_edit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditActionPerformed(evt);
+                btn_editActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonEdit);
-        jButtonEdit.setBounds(850, 660, 160, 40);
+        jPanel1.add(btn_edit);
+        btn_edit.setBounds(850, 660, 160, 40);
 
         jButtonSewa.setBackground(new java.awt.Color(51, 0, 255));
         jButtonSewa.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
@@ -568,6 +568,11 @@ public class SewaMobil extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_sewa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_sewaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tb_sewa);
 
         jPanel1.add(jScrollPane2);
@@ -599,9 +604,28 @@ public class SewaMobil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonprintActionPerformed
 
-    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEditActionPerformed
+    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
+        // button EDIT
+        try {
+            if( !txt_nik.getText().isEmpty() && !txt_nama.getText().isEmpty() && !txt_alamat.getText().isEmpty() && !txt_notelp.getText().isEmpty()){
+                java.util.Date tgl = (java.util.Date) this.jDatetglpeminjaman1.getDate();
+                java.util.Date tgl1 = (java.util.Date) this.jDatetglpengembalian.getDate();
+                String kolom[] = {"NIK","Nama","Alamat", "No_telp","Tipe_mobil","No_polisi","Harga", "Tgl_peminjaman", "Tgl_pengembalian","Lama_mobil","Supir","Lama_supir", "Total"};
+                String isi[] = {txt_nik.getText(),txt_nama.getText(),txt_alamat.getText(),txt_notelp.getText(),cb_mobil.getSelectedItem().toString(),cb_Nopolisi.getSelectedItem().toString(),lb_Harga.getText(),new java.sql.Date(tgl.getTime()).toString(),new java.sql.Date(tgl1.getTime()).toString(),txt_lamaPinjam.getText(),cb_Supir.getSelectedItem().toString(),txt_lamaSupir.getText(),lb_total.getText()};
+                        
+                
+                con.queryUpdate("sewa_mobil", kolom, isi,"id_sewa='"+String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),0))+"'");
+                JOptionPane.showMessageDialog(this, "Data Berhasil Diedit");
+            }else{
+                JOptionPane.showMessageDialog(this, "Data isian ada yang kosong");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error edit data");
+        }
+        loadTabel();
+        clear();
+        
+    }//GEN-LAST:event_btn_editActionPerformed
 
     private void txt_lamaSupirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_lamaSupirActionPerformed
         // TODO add your handling code here:
@@ -703,6 +727,23 @@ public class SewaMobil extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void tb_sewaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_sewaMouseClicked
+        txt_nik.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),1)));        //1
+        
+        txt_nama.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),2)));       //2
+        txt_alamat.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),3)));     //3
+        txt_notelp.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),4)));     //4
+        cb_mobil.getSelectedIndex(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),5)));                                                  //5
+//        cb_Nopolisi.getSelectedItem().toString()                                                //6
+        lb_Harga.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),7)));       //7
+//        new java.sql.Date(tgl.getTime()).toString()                                             //8
+//        new java.sql.Date(tgl1.getTime()).toString()                                            //9
+        txt_lamaPinjam.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),1))); //10
+//        cb_Supir.getSelectedItem().toString()                                                   //11
+        txt_lamaSupir.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),12)));  //12
+        lb_total.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),13)));       //13
+    }//GEN-LAST:event_tb_sewaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -739,12 +780,12 @@ public class SewaMobil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_hitung;
     private javax.swing.JComboBox<String> cb_Nopolisi;
     private javax.swing.JComboBox<String> cb_Supir;
     private javax.swing.JComboBox<String> cb_mobil;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonSewa;
     private javax.swing.JButton jButtonprint;
     private com.toedter.calendar.JDateChooser jDatetglpeminjaman1;
