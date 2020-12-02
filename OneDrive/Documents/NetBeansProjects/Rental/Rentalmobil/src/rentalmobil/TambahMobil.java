@@ -201,8 +201,9 @@ public class TambahMobil extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(40, 110, 490, 360);
 
-        btn_tambah.setBackground(new java.awt.Color(255, 255, 255));
+        btn_tambah.setBackground(new java.awt.Color(0, 0, 204));
         btn_tambah.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_tambah.setForeground(new java.awt.Color(255, 255, 255));
         btn_tambah.setText("Tambah");
         btn_tambah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_tambah.addActionListener(new java.awt.event.ActionListener() {
@@ -224,8 +225,9 @@ public class TambahMobil extends javax.swing.JFrame {
         jPanel1.add(btn_search);
         btn_search.setBounds(1260, 110, 35, 35);
 
-        btn_Hapus.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Hapus.setBackground(new java.awt.Color(204, 0, 0));
         btn_Hapus.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_Hapus.setForeground(new java.awt.Color(255, 255, 255));
         btn_Hapus.setText("Hapus");
         btn_Hapus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_Hapus.addActionListener(new java.awt.event.ActionListener() {
@@ -236,8 +238,9 @@ public class TambahMobil extends javax.swing.JFrame {
         jPanel1.add(btn_Hapus);
         btn_Hapus.setBounds(380, 520, 140, 40);
 
-        btn_edit.setBackground(new java.awt.Color(255, 255, 255));
+        btn_edit.setBackground(new java.awt.Color(0, 204, 0));
         btn_edit.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_edit.setForeground(new java.awt.Color(255, 255, 255));
         btn_edit.setText("Edit");
         btn_edit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_edit.addActionListener(new java.awt.event.ActionListener() {
@@ -398,6 +401,8 @@ public class TambahMobil extends javax.swing.JFrame {
         txt_tahun.setText(String.valueOf(tablemobil.getValueAt(tablemobil.getSelectedRow(),3)));
         txt_nopolisi.setText(String.valueOf( tablemobil.getValueAt(tablemobil.getSelectedRow(),4)));
         txt_hargaSewa.setText(String.valueOf( tablemobil.getValueAt(tablemobil.getSelectedRow(),5)));
+        String jr = tablemobil.getValueAt(tablemobil.getSelectedRow(), 6).toString();
+        combo_status.setSelectedItem(jr);
     }//GEN-LAST:event_tablemobilMouseClicked
 
     /**

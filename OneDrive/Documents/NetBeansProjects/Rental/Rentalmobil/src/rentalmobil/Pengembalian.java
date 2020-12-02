@@ -55,7 +55,6 @@ public class Pengembalian extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jComboBoxSupir = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -70,7 +69,8 @@ public class Pengembalian extends javax.swing.JFrame {
         lb_total = new javax.swing.JLabel();
         lb_harga = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        cb_tipe = new javax.swing.JComboBox<>();
+        lb_supir = new javax.swing.JLabel();
+        lb_tipe = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_pengembalian = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
@@ -124,9 +124,6 @@ public class Pengembalian extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Lama Supir");
-
-        jComboBoxSupir.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        jComboBoxSupir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih" }));
 
         jLabel17.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,13 +185,13 @@ public class Pengembalian extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Tipe Mobil");
 
-        cb_tipe.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
-        cb_tipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih" }));
-        cb_tipe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_tipeActionPerformed(evt);
-            }
-        });
+        lb_supir.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_supir.setForeground(new java.awt.Color(255, 255, 255));
+        lb_supir.setText("Supir");
+
+        lb_tipe.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_tipe.setForeground(new java.awt.Color(255, 255, 255));
+        lb_tipe.setText("Tipe Mobil");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -210,76 +207,46 @@ public class Pengembalian extends javax.swing.JFrame {
                     .addComponent(lb_nama)
                     .addComponent(lb_notelp)
                     .addComponent(jLabel16)
-                    .addComponent(cb_tipe, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(lb_harga))
+                    .addComponent(lb_harga)
+                    .addComponent(lb_tipe))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(18, 18, 18)
-                                .addComponent(lb_total))
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel12)
-                            .addComponent(lb_pengembalian)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15)
-                            .addComponent(jComboBoxSupir, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_pemnjaman))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel12)
+                    .addComponent(lb_pengembalian)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel14)
+                    .addComponent(lb_pemnjaman)
+                    .addComponent(jLabel15)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(lb_lama)
-                                .addGap(66, 66, 66))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(lb_lamasupir)
-                                .addGap(67, 67, 67)))
+                        .addGap(43, 43, 43)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel17))
-                        .addGap(48, 48, 48))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lb_lama)
+                                .addGap(66, 66, 66)
+                                .addComponent(jLabel20))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lb_lamasupir)
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel17))))
+                    .addComponent(lb_supir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(lb_total))
+                    .addComponent(jLabel18))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lb_pemnjaman)
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lb_pengembalian)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb_lama)
-                            .addComponent(jLabel20))
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxSupir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb_lamasupir)
-                            .addComponent(jLabel17))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(lb_total)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -291,16 +258,49 @@ public class Pengembalian extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cb_tipe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel8)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_lama)
+                            .addComponent(jLabel20)
+                            .addComponent(lb_tipe))
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel14)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cb_nopol, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lb_pemnjaman)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lb_pengembalian)
                         .addGap(18, 18, 18)
+                        .addComponent(jLabel13)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cb_nopol, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(lb_supir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_lamasupir)
+                            .addComponent(jLabel17)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lb_harga)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(lb_total))
+                .addGap(90, 90, 90))
         );
 
         jPanel1.add(jPanel2);
@@ -318,6 +318,11 @@ public class Pengembalian extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13", "Title 14"
             }
         ));
+        tb_pengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_pengembalianMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_pengembalian);
 
         jPanel1.add(jScrollPane1);
@@ -375,9 +380,12 @@ public class Pengembalian extends javax.swing.JFrame {
                 this.lb_nama.setText(rst.getString("Nama"));
                 this.lb_notelp.setText(rst.getString("No_telp"));   
                 this.lb_harga.setText(rst.getString("Harga"));
+                this.lb_tipe.setText(rst.getString("Tipe_mobil"));
                 this.lb_pengembalian.setText(rst.getString("Tgl_pengembalian"));
                 this.lb_pemnjaman.setText(rst.getString("Tgl_peminjaman"));
                 this.lb_lama.setText(rst.getString("Lama_mobil"));
+                this.lb_supir.setText(rst.getString("Supir"));
+                this.lb_lamasupir.setText(rst.getString("Lama_supir"));
 
             }
         } catch (SQLException ex) {
@@ -397,9 +405,21 @@ public class Pengembalian extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButtonKembalikanActionPerformed
 
-    private void cb_tipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_tipeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_tipeActionPerformed
+    private void tb_pengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_pengembalianMouseClicked
+           
+        lb_nama.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),0)));       //2
+        lb_notelp.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),1)));
+        lb_tipe.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),2)));
+        String jr = tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(), 3).toString();
+        cb_nopol.setSelectedItem(jr);
+        lb_harga.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),4)));
+        lb_pemnjaman.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),5)));
+        lb_pengembalian.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),6)));
+        lb_lama.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),7)));
+        lb_supir.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),8)));
+        lb_lamasupir.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),9)));
+        lb_total.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),10)));
+    }//GEN-LAST:event_tb_pengembalianMouseClicked
 
     /**
      * @param args the command line arguments
@@ -438,10 +458,8 @@ public class Pengembalian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_nopol;
-    private javax.swing.JComboBox<String> cb_tipe;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonKembalikan;
-    private javax.swing.JComboBox<String> jComboBoxSupir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -468,6 +486,8 @@ public class Pengembalian extends javax.swing.JFrame {
     private javax.swing.JLabel lb_notelp;
     private javax.swing.JLabel lb_pemnjaman;
     private javax.swing.JLabel lb_pengembalian;
+    private javax.swing.JLabel lb_supir;
+    private javax.swing.JLabel lb_tipe;
     private javax.swing.JLabel lb_total;
     private javax.swing.JTable tb_pengembalian;
     // End of variables declaration//GEN-END:variables

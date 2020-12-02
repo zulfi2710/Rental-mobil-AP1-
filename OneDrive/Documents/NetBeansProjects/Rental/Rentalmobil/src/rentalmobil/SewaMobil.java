@@ -668,8 +668,7 @@ public class SewaMobil extends javax.swing.JFrame {
         
             while (rst.next()) {
 
-                this.lb_Merek.setText(rst.getString("merek"));
-                
+                this.lb_Merek.setText(rst.getString("merek"));                
                 this.lb_Tahun.setText(rst.getString("tahun"));
                 this.lb_Harga.setText(rst.getString("harga"));
                 this.lb_Status.setText(rst.getString("status"));
@@ -728,20 +727,28 @@ public class SewaMobil extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void tb_sewaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_sewaMouseClicked
-        txt_nik.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),1)));        //1
+      
+        txt_nik.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),0)));       
+        txt_nama.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),1)));       
+        txt_alamat.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),2)));       
+        txt_notelp.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),3)));   
         
-        txt_nama.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),2)));       //2
-        txt_alamat.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),3)));     //3
-        txt_notelp.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),4)));     //4
-        cb_mobil.getSelectedIndex(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),5)));                                                  //5
-//        cb_Nopolisi.getSelectedItem().toString()                                                //6
-        lb_Harga.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),7)));       //7
-//        new java.sql.Date(tgl.getTime()).toString()                                             //8
-//        new java.sql.Date(tgl1.getTime()).toString()                                            //9
-        txt_lamaPinjam.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),1))); //10
-//        cb_Supir.getSelectedItem().toString()                                                   //11
-        txt_lamaSupir.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),12)));  //12
-        lb_total.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),13)));       //13
+        String mb = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 4).toString();
+        cb_mobil.setSelectedItem(mb);  
+        
+        String no = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 5).toString();
+        cb_Nopolisi.setSelectedItem(no); 
+        
+        
+        lb_Harga.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),6)));       
+
+        txt_lamaPinjam.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),9)));
+        String jr = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 10).toString();
+        cb_Supir.setSelectedItem(jr);                       
+        txt_lamaSupir.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),11)));  
+        lb_total.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),12))); 
+        
+        
     }//GEN-LAST:event_tb_sewaMouseClicked
 
     /**
@@ -895,7 +902,7 @@ public class SewaMobil extends javax.swing.JFrame {
     }
  
  private void loadTabel() {
-        String namaKolom[] = {"Nama", "No_telp", "Tipe_mobil", "No_polisi", "harga","Tgl_peminjaman","Tgl_pengembalian","Lama_mobil", "Supir","Lama_supir","Total"}; //,
+        String namaKolom[] = {"NIK","Nama", "Alamat","No_telp", "Tipe_mobil", "No_polisi", "harga","Tgl_peminjaman","Tgl_pengembalian","Lama_mobil", "Supir","Lama_supir","Total"}; //,
         rs = con.querySelect(namaKolom, "sewa_mobil");
         tb_sewa.setModel(new ResultSetTable(rs)); //,"tgl_pinjam","tgl_kembali" ,jDateChooser1.getDateFormatString(),jDateChooser2.getDateFormatString()
     }

@@ -87,16 +87,16 @@ public class TambahSupir extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("No. Telp");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Status");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
 
         combo_status.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         combo_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tersedia", "Keluar" }));
-        jPanel2.add(combo_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 250, 35));
+        jPanel2.add(combo_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 250, 35));
 
         txt_nik.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         txt_nik.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +115,7 @@ public class TambahSupir extends javax.swing.JFrame {
         jPanel2.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 68, 250, 35));
 
         txt_notelp.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
-        jPanel2.add(txt_notelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 250, 35));
+        jPanel2.add(txt_notelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 250, 35));
 
         txt_alamat.setColumns(20);
         txt_alamat.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
@@ -125,7 +125,7 @@ public class TambahSupir extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 120, 250, -1));
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(30, 110, 490, 350);
+        jPanel2.setBounds(30, 110, 490, 370);
 
         jLabel2.setFont(new java.awt.Font("Quicksand Medium", 1, 50)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -176,8 +176,9 @@ public class TambahSupir extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(570, 150, 750, 402);
 
-        btn_hapus.setBackground(new java.awt.Color(255, 255, 255));
-        btn_hapus.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_hapus.setBackground(new java.awt.Color(204, 0, 0));
+        btn_hapus.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
+        btn_hapus.setForeground(new java.awt.Color(255, 255, 255));
         btn_hapus.setText("Hapus");
         btn_hapus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_hapus.addActionListener(new java.awt.event.ActionListener() {
@@ -186,10 +187,11 @@ public class TambahSupir extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_hapus);
-        btn_hapus.setBounds(380, 490, 140, 40);
+        btn_hapus.setBounds(380, 510, 140, 40);
 
-        btn_edit.setBackground(new java.awt.Color(255, 255, 255));
-        btn_edit.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_edit.setBackground(new java.awt.Color(0, 204, 0));
+        btn_edit.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
+        btn_edit.setForeground(new java.awt.Color(255, 255, 255));
         btn_edit.setText("Edit");
         btn_edit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_edit.addActionListener(new java.awt.event.ActionListener() {
@@ -198,10 +200,11 @@ public class TambahSupir extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_edit);
-        btn_edit.setBounds(220, 490, 140, 40);
+        btn_edit.setBounds(220, 510, 140, 40);
 
-        btn_tambah.setBackground(new java.awt.Color(255, 255, 255));
-        btn_tambah.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_tambah.setBackground(new java.awt.Color(0, 0, 204));
+        btn_tambah.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
+        btn_tambah.setForeground(new java.awt.Color(255, 255, 255));
         btn_tambah.setText("Tambah");
         btn_tambah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_tambah.addActionListener(new java.awt.event.ActionListener() {
@@ -210,10 +213,10 @@ public class TambahSupir extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_tambah);
-        btn_tambah.setBounds(50, 490, 140, 40);
+        btn_tambah.setBounds(50, 510, 140, 40);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
         jButton1.setText("Refresh");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +225,7 @@ public class TambahSupir extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(220, 550, 140, 40);
+        jButton1.setBounds(220, 570, 140, 40);
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
@@ -325,7 +328,8 @@ public class TambahSupir extends javax.swing.JFrame {
         txt_nama.setText(String.valueOf( tabel_supir.getValueAt(tabel_supir.getSelectedRow(),2)));
         txt_alamat.setText(String.valueOf(tabel_supir.getValueAt(tabel_supir.getSelectedRow(),3)));
         txt_notelp.setText(String.valueOf( tabel_supir.getValueAt(tabel_supir.getSelectedRow(),4)));
-       
+        String jr = tabel_supir.getValueAt(tabel_supir.getSelectedRow(), 5).toString();
+        combo_status.setSelectedItem(jr);
     }//GEN-LAST:event_tabel_supirMouseClicked
 
     /**

@@ -65,8 +65,9 @@ public class TambahUser extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        btn_hapus.setBackground(new java.awt.Color(255, 255, 255));
-        btn_hapus.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_hapus.setBackground(new java.awt.Color(204, 0, 0));
+        btn_hapus.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
+        btn_hapus.setForeground(new java.awt.Color(255, 255, 255));
         btn_hapus.setText("Hapus");
         btn_hapus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_hapus.addActionListener(new java.awt.event.ActionListener() {
@@ -77,8 +78,9 @@ public class TambahUser extends javax.swing.JFrame {
         jPanel1.add(btn_hapus);
         btn_hapus.setBounds(370, 480, 140, 40);
 
-        btn_edit.setBackground(new java.awt.Color(255, 255, 255));
-        btn_edit.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_edit.setBackground(new java.awt.Color(0, 204, 0));
+        btn_edit.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
+        btn_edit.setForeground(new java.awt.Color(255, 255, 255));
         btn_edit.setText("Edit");
         btn_edit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_edit.addActionListener(new java.awt.event.ActionListener() {
@@ -89,8 +91,9 @@ public class TambahUser extends javax.swing.JFrame {
         jPanel1.add(btn_edit);
         btn_edit.setBounds(210, 480, 140, 40);
 
-        btn_tambah.setBackground(new java.awt.Color(255, 255, 255));
-        btn_tambah.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_tambah.setBackground(new java.awt.Color(0, 0, 204));
+        btn_tambah.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
+        btn_tambah.setForeground(new java.awt.Color(255, 255, 255));
         btn_tambah.setText("Tambah");
         btn_tambah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_tambah.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +105,7 @@ public class TambahUser extends javax.swing.JFrame {
         btn_tambah.setBounds(40, 480, 140, 40);
 
         btn_refresh.setBackground(new java.awt.Color(255, 255, 255));
-        btn_refresh.setFont(new java.awt.Font("Quicksand", 1, 24)); // NOI18N
+        btn_refresh.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
         btn_refresh.setText("Refresh");
         btn_refresh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_refresh.addActionListener(new java.awt.event.ActionListener() {
@@ -290,6 +293,8 @@ public class TambahUser extends javax.swing.JFrame {
         txt_username.setText(String.valueOf( tabel_user.getValueAt(tabel_user.getSelectedRow(),2)));
         txt_password.setText(String.valueOf( tabel_user.getValueAt(tabel_user.getSelectedRow(),3)));
         combo_level.setSelectedItem(String.valueOf(tabel_user.getValueAt(tabel_user.getSelectedRow(),4)));
+        String jr = tabel_user.getValueAt(tabel_user.getSelectedRow(), 5).toString();
+        combo_level.setSelectedItem(jr);
     }//GEN-LAST:event_tabel_userMouseClicked
 
     /**
