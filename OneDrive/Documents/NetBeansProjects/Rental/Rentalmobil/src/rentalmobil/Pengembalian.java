@@ -129,11 +129,11 @@ public class Pengembalian extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Hari");
 
-        jLabel18.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Quicksand Medium", 1, 36)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Total");
 
-        jLabel19.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Quicksand Medium", 1, 36)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Rp.");
 
@@ -173,7 +173,7 @@ public class Pengembalian extends javax.swing.JFrame {
         lb_lamasupir.setForeground(new java.awt.Color(255, 255, 255));
         lb_lamasupir.setText("0");
 
-        lb_total.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_total.setFont(new java.awt.Font("Quicksand Medium", 1, 36)); // NOI18N
         lb_total.setForeground(new java.awt.Color(255, 255, 255));
         lb_total.setText("00000");
 
@@ -232,15 +232,15 @@ public class Pengembalian extends javax.swing.JFrame {
                                 .addComponent(jLabel17))))
                     .addComponent(lb_supir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(153, 153, 153)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addGap(18, 18, 18)
-                        .addComponent(lb_total))
-                    .addComponent(jLabel18))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(lb_total, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(81, 81, 81))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,13 +294,13 @@ public class Pengembalian extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lb_harga)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(lb_total))
-                .addGap(90, 90, 90))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);

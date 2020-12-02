@@ -10,11 +10,14 @@ import Database.ResultSetTable;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -744,7 +747,11 @@ public class SewaMobil extends javax.swing.JFrame {
 
         txt_lamaPinjam.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),9)));
         String jr = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 10).toString();
-        cb_Supir.setSelectedItem(jr);                       
+        cb_Supir.setSelectedItem(jr);  
+        
+       jDatetglpeminjaman1.setDate(getTanggalFromTable(tb_sewa, 7));
+       jDatetglpengembalian.setDate(getTanggalFromTable(tb_sewa, 8));
+        
         txt_lamaSupir.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),11)));  
         lb_total.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),12))); 
         
@@ -984,6 +991,16 @@ public class SewaMobil extends javax.swing.JFrame {
         return hasil;
 
     }
-
+    public static Date getTanggalFromTable(JTable table, int kolom){
+        JTable tabel = table;
+        String str_tgl = String.valueOf(tabel.getValueAt(tabel.getSelectedRow(), kolom));
+        Date tanggal = null;
+        try {
+            tanggal = new SimpleDateFormat("yyyy-MM-dd").parse(str_tgl);
+        } catch (ParseException ex) {
+            Logger.getLogger(SewaMobil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tanggal;
+    }
 
 }
