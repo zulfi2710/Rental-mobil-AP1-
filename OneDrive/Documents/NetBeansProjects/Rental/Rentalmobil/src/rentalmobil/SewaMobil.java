@@ -32,6 +32,7 @@ public class SewaMobil extends javax.swing.JFrame {
     static String tlp;
     static String email;
     String status1;
+    String statussupir;
     
     /**
      * Creates new form SewaMobil
@@ -93,6 +94,8 @@ public class SewaMobil extends javax.swing.JFrame {
         lb_total = new javax.swing.JLabel();
         jDatetglpengembalian = new com.toedter.calendar.JDateChooser();
         jDatetglpeminjaman1 = new com.toedter.calendar.JDateChooser();
+        jLabel25 = new javax.swing.JLabel();
+        lb_statussupir = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -205,7 +208,7 @@ public class SewaMobil extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SEWA MOBIL");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(520, 10, 330, 62);
+        jLabel2.setBounds(520, 10, 330, 60);
 
         jButtonprint.setBackground(new java.awt.Color(255, 255, 255));
         jButtonprint.setFont(new java.awt.Font("Quicksand Medium", 1, 24)); // NOI18N
@@ -296,7 +299,7 @@ public class SewaMobil extends javax.swing.JFrame {
 
         jLabel22.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Lama Supir");
+        jLabel22.setText("Status");
 
         txt_lamaSupir.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         txt_lamaSupir.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -341,6 +344,14 @@ public class SewaMobil extends javax.swing.JFrame {
 
         jDatetglpeminjaman1.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
 
+        jLabel25.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Lama Supir");
+
+        lb_statussupir.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        lb_statussupir.setForeground(new java.awt.Color(255, 255, 255));
+        lb_statussupir.setText("Status");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -365,34 +376,33 @@ public class SewaMobil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txt_lamaSupir, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel23))
-                    .addComponent(jLabel22)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_lamaSupir, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                    .addComponent(lb_statussupir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel23))
+                            .addComponent(jLabel25))
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(120, 120, 120))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lb_total, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel11)
-                    .addComponent(btn_hitung, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_Supir, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(177, 177, 177))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lb_total, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57))))
+                        .addComponent(cb_Supir, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(btn_hitung, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel22))
+                .addGap(22, 22, 22))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(lb_total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(121, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel24)
@@ -404,28 +414,38 @@ public class SewaMobil extends javax.swing.JFrame {
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDatetglpeminjaman1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cb_Supir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_Supir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_hitung, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel22))
                 .addGap(16, 16, 16)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jDatetglpengembalian, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_lamaPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_lamaSupir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel23))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_hitung, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel13)
+                            .addComponent(lb_total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lb_statussupir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDatetglpengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel25))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt_lamaPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_lamaSupir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel23)))))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel3);
@@ -713,7 +733,7 @@ public class SewaMobil extends javax.swing.JFrame {
         try {
             while (rst.next()) {
 
-                //this.lbl_merek.setText(rst.getString("merek"));
+                 this.lb_statussupir.setText(rst.getString("status"));
                 
             }
         } catch (SQLException ex) {
@@ -821,6 +841,7 @@ public class SewaMobil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -838,6 +859,7 @@ public class SewaMobil extends javax.swing.JFrame {
     private javax.swing.JLabel lb_Merek;
     private javax.swing.JLabel lb_Status;
     private javax.swing.JLabel lb_Tahun;
+    private javax.swing.JLabel lb_statussupir;
     private javax.swing.JLabel lb_total;
     private javax.swing.JTable tb_sewa;
     private javax.swing.JTextArea txt_alamat;
@@ -922,7 +944,11 @@ public class SewaMobil extends javax.swing.JFrame {
                 if (!jikakeluar()) {
 
                     JOptionPane.showMessageDialog(this, "maaf mobil ini sedang tidak tersedia");
-                } else {
+                }
+                 if (!jikakeluarsupir()) {
+
+                    JOptionPane.showMessageDialog(this, "maaf supir ini sedang tidak tersedia");
+                }else {
                     java.util.Date tgl = (java.util.Date) this.jDatetglpeminjaman1.getDate();
                     java.util.Date tgl1 = (java.util.Date) this.jDatetglpengembalian.getDate();
                     String kolom[] = {"NIK","Nama","Alamat", "No_telp","Tipe_mobil","No_polisi","Harga", "Tgl_peminjaman", "Tgl_pengembalian","Lama_mobil","Supir","Lama_supir", "Total"};
@@ -932,6 +958,8 @@ public class SewaMobil extends javax.swing.JFrame {
                    
                     JOptionPane.showMessageDialog(this, "Data Berhasil Disimpan");
                     cekstatus();
+                    cekstatussupir();
+                   
                     
                     ///// iki fentch dddddd
                    
@@ -956,7 +984,7 @@ public class SewaMobil extends javax.swing.JFrame {
         txt_notelp.setText("");
         txt_lamaPinjam.setText("");
         txt_lamaSupir.setText("");
-        // boxnopol.addItem(rs.getString("nopol"));
+        
         jDatetglpeminjaman1.addNotify();
         jDatetglpengembalian.addNotify();
     }
@@ -971,9 +999,18 @@ public class SewaMobil extends javax.swing.JFrame {
         String kolom[] = {"status"};
         String isi[] = {update_status};
         con.queryUpdate("tb_mobil", kolom, isi, "nopol='" + cb_Nopolisi.getSelectedItem().toString() + "'");
+    }
+    
+    public void cekstatussupir() throws SQLException {
+        rs = con.querySelectAll("tb_supir", "nama ='" + cb_Supir.getSelectedItem().toString() + "'");
+        while (rs.next()) {
+            statussupir = rs.getString("status");
 
-
-
+        }
+        String update_status = "Keluar";
+        String kolom[] = {"status"};
+        String isi[] = {update_status};
+        con.queryUpdate("tb_supir", kolom, isi, "nama='" + cb_Supir.getSelectedItem().toString() + "'");
     }
 
     public boolean jikakeluar() throws SQLException {
@@ -991,6 +1028,22 @@ public class SewaMobil extends javax.swing.JFrame {
         return hasil;
 
     }
+    public boolean jikakeluarsupir() throws SQLException {
+        boolean hasil;
+
+        rs = con.querySelectAll("tb_supir", "nama ='" + cb_Supir.getSelectedItem().toString() + "'");
+        while (rs.next()) {
+            statussupir = rs.getString("status");
+        }
+        if (statussupir.equals("Keluar")) {
+            hasil = false;
+        } else {
+            hasil = true;
+        }
+        return hasil;
+
+    }
+    
     public static Date getTanggalFromTable(JTable table, int kolom){
         JTable tabel = table;
         String str_tgl = String.valueOf(tabel.getValueAt(tabel.getSelectedRow(), kolom));
