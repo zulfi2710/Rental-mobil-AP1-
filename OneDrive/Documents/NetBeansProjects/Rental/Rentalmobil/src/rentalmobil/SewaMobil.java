@@ -27,6 +27,7 @@ import javax.swing.JTable;
 public class SewaMobil extends javax.swing.JFrame {
  ResultSet rs;
     KoneksiDatabase con;
+//    static String 
     static String nama;
     static String nik;
     static String alamat;
@@ -633,6 +634,7 @@ public class SewaMobil extends javax.swing.JFrame {
         // button EDIT
         try {
             if( !txt_nik.getText().isEmpty() && !txt_nama.getText().isEmpty() && !txt_alamat.getText().isEmpty() && !txt_notelp.getText().isEmpty()){
+                
                 java.util.Date tgl = (java.util.Date) this.jDatetglpeminjaman1.getDate();
                 java.util.Date tgl1 = (java.util.Date) this.jDatetglpengembalian.getDate();
                 String kolom[] = {"NIK","Nama","Alamat", "No_telp","Tipe_mobil","No_polisi","Harga", "Tgl_peminjaman", "Tgl_pengembalian","Lama_mobil","Supir","Lama_supir", "Total"};
@@ -753,30 +755,28 @@ public class SewaMobil extends javax.swing.JFrame {
 
     private void tb_sewaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_sewaMouseClicked
       
-        txt_nik.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),0)));       
-        txt_nama.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),1)));       
-        txt_alamat.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),2)));       
-        txt_notelp.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),3)));   
+        txt_nik.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),1)));       
+        txt_nama.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),2)));       
+        txt_alamat.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),3)));       
+        txt_notelp.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),4)));   
         
-        String mb = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 4).toString();
+        String mb = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 5).toString();
         cb_mobil.setSelectedItem(mb);  
-        
-        String no = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 5).toString();
+        String no = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 6).toString();
         cb_Nopolisi.setSelectedItem(no); 
         
+        lb_Harga.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),7)));  
         
-        lb_Harga.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),6)));       
-
-        txt_lamaPinjam.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),9)));
-        String jr = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 10).toString();
+        jDatetglpeminjaman1.setDate(getTanggalFromTable(tb_sewa, 8));
+        jDatetglpengembalian.setDate(getTanggalFromTable(tb_sewa, 9));
+        
+        txt_lamaPinjam.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),10)));
+        
+        String jr = tb_sewa.getValueAt(tb_sewa.getSelectedRow(), 11).toString();
         cb_Supir.setSelectedItem(jr);  
         
-       jDatetglpeminjaman1.setDate(getTanggalFromTable(tb_sewa, 7));
-       jDatetglpengembalian.setDate(getTanggalFromTable(tb_sewa, 8));
-        
-        txt_lamaSupir.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),11)));  
-        lb_total.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),12))); 
-        
+        txt_lamaSupir.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),12)));  
+        lb_total.setText(String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),13))); 
         
     }//GEN-LAST:event_tb_sewaMouseClicked
 
@@ -933,10 +933,10 @@ public class SewaMobil extends javax.swing.JFrame {
     }
  
  private void loadTabel() {
-        String namaKolom[] = {"NIK","Nama", "Alamat","No_telp", "Tipe_mobil", "No_polisi", "harga","Tgl_peminjaman","Tgl_pengembalian","Lama_mobil", "Supir","Lama_supir","Total"}; //,
+        String namaKolom[] = {"id_sewa","NIK","Nama", "Alamat","No_telp", "Tipe_mobil", "No_polisi", "harga","Tgl_peminjaman","Tgl_pengembalian","Lama_mobil", "Supir","Lama_supir","Total"}; //,
         rs = con.querySelect(namaKolom, "sewa_mobil");
         tb_sewa.setModel(new ResultSetTable(rs)); //,"tgl_pinjam","tgl_kembali" ,jDateChooser1.getDateFormatString(),jDateChooser2.getDateFormatString()
-    }
+    }   
  
  private void create() {
         try {
