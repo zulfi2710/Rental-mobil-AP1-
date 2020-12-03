@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -624,7 +625,8 @@ public class SewaMobil extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_namaActionPerformed
 
     private void jButtonprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonprintActionPerformed
-        // TODO add your handling code here:
+        cetak fm = new cetak();
+        fm.setVisible(true);
     }//GEN-LAST:event_jButtonprintActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
