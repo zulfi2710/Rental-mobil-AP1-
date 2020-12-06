@@ -26,12 +26,14 @@ public class Pengembalian extends javax.swing.JFrame {
     ResultSet rs;
     KoneksiDatabase con;
     String status1;
+    String statussupir;
     public Pengembalian() {
         initComponents();
          jPanel2.setBackground(new Color(0,0,0,200));
          con = new KoneksiDatabase(new Database.Parameter().HOST_DB, new Database.Parameter().USERNAME_DB, new Database.Parameter().PASSWORD_DB);
          loadTabel();
          loadMobil();
+         loadSupir();
     }
 
     /**
@@ -69,8 +71,8 @@ public class Pengembalian extends javax.swing.JFrame {
         lb_total = new javax.swing.JLabel();
         lb_harga = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        lb_supir = new javax.swing.JLabel();
         lb_tipe = new javax.swing.JLabel();
+        cb_supir = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_pengembalian = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
@@ -185,13 +187,17 @@ public class Pengembalian extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Tipe Mobil");
 
-        lb_supir.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
-        lb_supir.setForeground(new java.awt.Color(255, 255, 255));
-        lb_supir.setText("Supir");
-
         lb_tipe.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
         lb_tipe.setForeground(new java.awt.Color(255, 255, 255));
         lb_tipe.setText("Tipe Mobil");
+
+        cb_supir.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        cb_supir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan Pilih" }));
+        cb_supir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_supirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -230,7 +236,7 @@ public class Pengembalian extends javax.swing.JFrame {
                                 .addComponent(lb_lamasupir)
                                 .addGap(67, 67, 67)
                                 .addComponent(jLabel17))))
-                    .addComponent(lb_supir))
+                    .addComponent(cb_supir, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -277,11 +283,9 @@ public class Pengembalian extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel13)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cb_nopol, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lb_supir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cb_supir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -384,8 +388,8 @@ public class Pengembalian extends javax.swing.JFrame {
                 this.lb_pengembalian.setText(rst.getString("Tgl_pengembalian"));
                 this.lb_pemnjaman.setText(rst.getString("Tgl_peminjaman"));
                 this.lb_lama.setText(rst.getString("Lama_mobil"));
-                this.lb_supir.setText(rst.getString("Supir"));
-                this.lb_lamasupir.setText(rst.getString("Lama_supir"));
+                //this.lb_supir.setText(rst.getString("Supir"));
+                //this.lb_lamasupir.setText(rst.getString("Lama_supir"));
 
             }
         } catch (SQLException ex) {
@@ -393,10 +397,13 @@ public class Pengembalian extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cb_nopolActionPerformed
 
+   
+    
     private void jButtonKembalikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKembalikanActionPerformed
         try {
             hapus_transaksi();
             cekstatus();
+            cekstatussupir();
             loadTabel();
 
         } catch (SQLException ex) {
@@ -416,10 +423,27 @@ public class Pengembalian extends javax.swing.JFrame {
         lb_pemnjaman.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),5)));
         lb_pengembalian.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),6)));
         lb_lama.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),7)));
-        lb_supir.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),8)));
+        
+        String s = tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(), 8).toString();
+        cb_supir.setSelectedItem(s);
+        
         lb_lamasupir.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),9)));
         lb_total.setText(String.valueOf(tb_pengembalian.getValueAt(tb_pengembalian.getSelectedRow(),10)));
     }//GEN-LAST:event_tb_pengembalianMouseClicked
+
+    private void cb_supirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_supirActionPerformed
+        String st = (String) cb_supir.getSelectedItem();
+        ResultSet rst = con.querySelectAll("sewa_mobil", "Supir='" + st + "'");
+        try {
+            while (rst.next()) {
+              
+                this.lb_lamasupir.setText(rst.getString("Lama_supir"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pengembalian.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cb_supirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -458,6 +482,7 @@ public class Pengembalian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_nopol;
+    private javax.swing.JComboBox<String> cb_supir;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonKembalikan;
     private javax.swing.JLabel jLabel1;
@@ -486,7 +511,6 @@ public class Pengembalian extends javax.swing.JFrame {
     private javax.swing.JLabel lb_notelp;
     private javax.swing.JLabel lb_pemnjaman;
     private javax.swing.JLabel lb_pengembalian;
-    private javax.swing.JLabel lb_supir;
     private javax.swing.JLabel lb_tipe;
     private javax.swing.JLabel lb_total;
     private javax.swing.JTable tb_pengembalian;
@@ -505,6 +529,21 @@ public class Pengembalian extends javax.swing.JFrame {
         }
 
     }
+    
+    private void loadSupir() {  // mengambil database
+
+        String query="select distinct nama from tb_supir ";
+        rs = con.eksekusiQuery(query);
+        try {
+            while (rs.next()) {
+                cb_supir.addItem(rs.getString("nama"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SewaMobil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     public void cekstatus() throws SQLException {
         rs = con.querySelectAll("tb_mobil", "nopol ='" + cb_nopol.getSelectedItem().toString() + "'");
@@ -517,10 +556,23 @@ public class Pengembalian extends javax.swing.JFrame {
         String isi[] = {update_status};
         con.queryUpdate("tb_mobil", kolom, isi, "nopol='" + cb_nopol.getSelectedItem().toString() + "'");
     }
+    
+    public void cekstatussupir() throws SQLException {
+        rs = con.querySelectAll("tb_supir", "nama ='" + cb_supir.getSelectedItem().toString() + "'");
+        while (rs.next()) {
+            statussupir = rs.getString("status");
+
+        }
+        String update_status = "Tersedia";
+        String kolom[] = {"status"};
+        String isi[] = {update_status};
+        con.queryUpdate("tb_supir", kolom, isi, "nama='" + cb_supir.getSelectedItem().toString() + "'");
+    }
 
     public void hapus_transaksi() {
         if (JOptionPane.showConfirmDialog(this, "Yakin Mengembalikan Mobil ?", "Peringatan", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
             con.queryDelete("sewa_mobil", "No_polisi='" + cb_nopol.getSelectedItem().toString() + "'");
+            con.queryDelete("sewa_mobil", "Supir='" + cb_nopol.getSelectedItem().toString() + "'");
         }
 
     }

@@ -221,4 +221,8 @@ public class KoneksiDatabase {
         return this.eksekusiUpdate(SQL);
 
     }
+
+    public void queryDelete(String sewa_mobil, String string, String string0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -634,7 +634,10 @@ public class SewaMobil extends javax.swing.JFrame {
         // button EDIT
         try {
             if( !txt_nik.getText().isEmpty() && !txt_nama.getText().isEmpty() && !txt_alamat.getText().isEmpty() && !txt_notelp.getText().isEmpty()){
-                
+                if (!jikakeluar()) {
+
+                    JOptionPane.showMessageDialog(this, "maaf mobil ini sedang tidak tersedia");
+                }
                 java.util.Date tgl = (java.util.Date) this.jDatetglpeminjaman1.getDate();
                 java.util.Date tgl1 = (java.util.Date) this.jDatetglpengembalian.getDate();
                 String kolom[] = {"NIK","Nama","Alamat", "No_telp","Tipe_mobil","No_polisi","Harga", "Tgl_peminjaman", "Tgl_pengembalian","Lama_mobil","Supir","Lama_supir", "Total"};
@@ -642,7 +645,9 @@ public class SewaMobil extends javax.swing.JFrame {
                         
                 
                 con.queryUpdate("sewa_mobil", kolom, isi,"id_sewa='"+String.valueOf(tb_sewa.getValueAt(tb_sewa.getSelectedRow(),0))+"'");
+                
                 JOptionPane.showMessageDialog(this, "Data Berhasil Diedit");
+                cekstatus();
             }else{
                 JOptionPane.showMessageDialog(this, "Data isian ada yang kosong");
             }

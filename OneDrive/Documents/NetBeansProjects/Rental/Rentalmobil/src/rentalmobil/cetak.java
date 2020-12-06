@@ -24,20 +24,16 @@ public class cetak extends javax.swing.JFrame {
      */
     ResultSet rs;
     KoneksiDatabase con;
-    ArrayList<Arraylist> CetakTiket;
-    //array
-    String CT[] = new String[]{"Nama", "Alamat", "Tipe mobil"};
+   
 
     public cetak() {
         initComponents();
         con = new KoneksiDatabase(new Database.Parameter().HOST_DB, new Database.Parameter().USERNAME_DB, new Database.Parameter().PASSWORD_DB);
-        CetakTiket = new ArrayList<>();
+      
         jPanel2.setBackground(new Color(0,0,0,200));
         loadTabel();
 
-        //txt_nama1.setText(SewaMobil.txt_nama.getText());
-        //txt_alamat1.setText(SewaMobil.txt_alamat.getText());
-        // txt_tipe1.setText(SewaMobil.JumlahTiket.getText());
+        
     }
 
     /**
